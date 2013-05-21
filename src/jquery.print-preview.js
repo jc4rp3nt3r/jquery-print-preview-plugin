@@ -41,13 +41,7 @@
                 .append(print_frame)
                 .appendTo('body');
 
-            // The frame lives
-            for (var i=0; i < window.frames.length; i++) {
-                if (window.frames[i].name == "print-frame") {    
-                    var print_frame_ref = window.frames[i].document;
-                    break;
-                }
-            }
+            var print_frame_ref = window.frames["print-frame"].document;
             print_frame_ref.open();
             print_frame_ref.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' +
                 '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">' + 
@@ -55,7 +49,7 @@
                 '<body></body>' +
                 '</html>');
             print_frame_ref.close();
-            
+
             // Grab contents and apply stylesheet
             var $iframe_head = $('head link[media*=print], head link[media=all]').clone(),
                 $iframe_body = $('body > *:not(#print-modal):not(script)').clone();
@@ -75,12 +69,12 @@
                     $('head', print_frame_ref).append($(this).clone().attr('media', 'all')[0].outerHTML);
                 });
             }
-            
+
             // Disable all links
             $('a', print_frame_ref).bind('click.printPreview', function(e) {
                 e.preventDefault();
             });
-            
+
             // Introduce print styles
             $('head').append('<style type="text/css">' +
                 '@media print {' +
