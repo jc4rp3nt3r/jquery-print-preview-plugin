@@ -11,12 +11,12 @@
 (function($) { 
     
 	// Initialization
-	$.fn.printPreview = function() {
+	$.fn.printPreview = function(oSelector) {
 		this.each(function() {
 			$(this).bind('click', function(e) {
 			    e.preventDefault();
 			    if (!$('#print-modal').length) {
-			        $.printPreview.loadPrintPreview();
+			        $.printPreview.loadPrintPreview(oSelector);
 			    }
 			});
 		});
