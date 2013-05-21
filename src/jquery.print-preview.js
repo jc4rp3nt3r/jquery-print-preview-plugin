@@ -67,7 +67,7 @@
                 $('body', print_frame_ref).append($iframe_body);
             }
             else {
-                var oSel = (oSelector == null) ? 'body > *:not(#print-modal):not(script)' ? oSelector;
+                var oSel = (oSelector == null) ? 'body > *:not(#print-modal):not(script)' : oSelector;
                 $(oSel).clone().each(function() {
                     $('body', print_frame_ref).append(this.outerHTML);
                 });
