@@ -29,7 +29,7 @@
         loadPrintPreview: function(oSelector) {
             // Declare DOM objects
             print_modal = $('<div id="print-modal"></div>');
-            print_controls = $('<div id="print-modal-controls">' + 
+            print_controls = $('<div id="print-modal-controls">' +
                                     '<a href="#" class="print" title="Print page">Print page</a>' +
                                     '<a href="#" class="close" title="Close print preview">Close</a>').hide();
             var print_frame = $('<iframe id="print-modal-content" scrolling="no" border="0" frameborder="0" name="print-frame" />');
@@ -86,7 +86,7 @@
                 print_frame.height($('body', print_frame.contents())[0].scrollHeight);
             });
             
-            // Position modal            
+            // Position modal
             starting_position = $(window).height() + $(window).scrollTop();
             var css = {
                     top:         starting_position,
@@ -105,7 +105,7 @@
             // Bind closure
             $('a', print_controls).bind('click', function(e) {
                 e.preventDefault();
-                if ($(this).hasClass('print')) { window.print(); }
+                if ($(this).hasClass('print')) { print_framewindow.print(); }
                 else { $.printPreview.distroyPrintPreview(); }
             });
     	},
