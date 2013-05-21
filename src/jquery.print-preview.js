@@ -26,7 +26,7 @@
     // Private functions
     var mask, size, print_modal, print_controls;
     $.printPreview = {
-        loadPrintPreview: function() {
+        loadPrintPreview: function(oSelector) {
             // Declare DOM objects
             print_modal = $('<div id="print-modal"></div>');
             print_controls = $('<div id="print-modal-controls">' + 
@@ -67,7 +67,8 @@
                 $('body', print_frame_ref).append($iframe_body);
             }
             else {
-                $('body > *:not(#print-modal):not(script)').clone().each(function() {
+                var oSel = (oSelector == null) ? 'body > *:not(#print-modal):not(script)' ? oSelector;
+                $(oSel).clone().each(function() {
                     $('body', print_frame_ref).append(this.outerHTML);
                 });
                 $('head link[media*=print], head link[media=all]').each(function() {
