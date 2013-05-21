@@ -105,7 +105,7 @@
             // Bind closure
             $('a', print_controls).bind('click', function(e) {
                 e.preventDefault();
-                if ($(this).hasClass('print')) { print_framewindow.print(); }
+                if ($(this).hasClass('print')) { window.frames["print-frame"].print(); }
                 else { $.printPreview.distroyPrintPreview(); }
             });
     	},
