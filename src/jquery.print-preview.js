@@ -7,21 +7,21 @@
  *
  * Date: Wed Jan 25 00:00:00 2012 -000
  */
+ 
+(function ($) {
 
-(function($) {
-
-	// Initialization
-	$.fn.printPreview = function(oSelector) {
-		this.each(function() {
-			$(this).bind('click', function(e) {
-			    e.preventDefault();
-			    if (!$('#print-modal').length) {
-			        $.printPreview.loadPrintPreview(oSelector);
-			    }
-			});
-		});
-		return this;
-	};
+    // Initialization
+    $.fn.printPreview = function (oSelector) {
+        this.each(function () {
+            $(this).bind('click', function (e) {
+                e.preventDefault();
+                if (!$('#print-modal').length) {
+                    $.printPreview.loadPrintPreview(oSelector);
+                }
+            });
+        });
+        return this;
+    };
 
     // Private functions
     var mask, size, print_modal, print_controls;
@@ -29,7 +29,7 @@
         loadPrintPreview: function(oSelector) {
             // Declare DOM objects
             print_modal = $('<div id="print-modal"></div>');
-            print_controls = $('<div id="print-modal-controls">' +
+            print_controls = $('<div id="print-modal-controls"><h5>Print Preview</h5>' +
                                     '<a href="#" class="print" title="Print page">Print page</a>' +
                                     '<a href="#" class="close" title="Close print preview">Close</a>').hide();
             var print_frame = $('<iframe id="print-modal-content" scrolling="no" border="0" frameborder="0" name="print-frame" />');
@@ -41,7 +41,9 @@
                 .append(print_frame)
                 .appendTo('body');
 
-            var print_frame_ref = window.frames["print-frame"].document;
+            var iFrame = $('#print-modal-content')[0];
+            var print_frame_ref = iFrame.contentDocument;
+
             print_frame_ref.open();
             print_frame_ref.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' +
                 '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">' +
